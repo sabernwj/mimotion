@@ -144,29 +144,26 @@ def getBeijinTime():
     else:
         print("获取北京时间失败")
         return
-    if min_1 != 0 and max_1 != 0:
-        user_mi = sys.argv[1]
-        # 登录密码
-        passwd_mi = sys.argv[2]
-        user_list = user_mi.split('#')
-        passwd_list = passwd_mi.split('#')
-        if len(user_list) == len(passwd_list):        
-            if K != 1.0:
-                msg_mi =  "由于天气" + type + "，已设置降低步数,系数为" + str(K) + "。\n" 
-            else:
-                msg_mi = ""
-            for user_mi, passwd_mi in zip(user_list, passwd_list):
-                msg_mi += main(user_mi,passwd_mi,min_1, max_1)
-                #print(msg_mi)
-            if a:
-               push('【小米运动步数修改】', msg_mi)
-               push_wx(msg_mi)
-               run(msg_mi)
-            else:
-               print("此次修改结果不推送")
-    else:
-        print("当前不是主人设定的提交步数时间或者主人设置了0步数呢，本次不提交")
-        return
+
+    user_mi = sys.argv[1]
+    # 登录密码
+    passwd_mi = sys.argv[2]
+    user_list = user_mi.split('#')
+    passwd_list = passwd_mi.split('#')
+    if len(user_list) == len(passwd_list):        
+        if K != 1.0:
+            msg_mi =  "由于天气" + type + "，已设置降低步数,系数为" + str(K) + "。\n" 
+        else:
+            msg_mi = ""
+        for user_mi, passwd_mi in zip(user_list, passwd_list):
+            msg_mi += main(user_mi,passwd_mi,min_1, max_1)
+            #print(msg_mi)
+        if a:
+           push('【小米运动步数修改】', msg_mi)
+           push_wx(msg_mi)
+           run(msg_mi)
+        else:
+           print("此次修改结果不推送")
 
 
 # 获取登录code
